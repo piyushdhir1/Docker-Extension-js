@@ -41,4 +41,28 @@ docker run -p 3000:3000 my-app
 
 This is a basic example of how to use Docker to containerize a JavaScript application. You can further customize the Dockerfile to include additional steps, such as copying environment files, or running a specific command before starting the application.
 
+<h1> For a simple static HTML, CSS, JS Website the dockerfile will be</h1>
+``` # Use an existing base image
+FROM nginx:alpine
+
+# Copy static website files to the container
+COPY . /usr/share/nginx/html
+
+# Expose port 80 for the NGINX web server
+EXPOSE 80
+
+# Start the NGINX web server when the container is started
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+To build the Docker image, you can run the following command in the directory where the Dockerfile is located:
+```
+docker build -t my-static-website .
+```
+
+To run the Docker container, you can run the following command:
+```
+docker run -p 80:80 my-static-website
+```
+
 
